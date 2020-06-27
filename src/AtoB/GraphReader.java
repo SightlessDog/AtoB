@@ -11,21 +11,22 @@ public class GraphReader {
        // while ((st = br.readLine()) != null) {
          //   result += st ;
        // }
-        WeightedGraph weightedGraph = new WeightedGraph(8);
+        WeightedGraph weightedGraph = new WeightedGraph(9);
 
         while ((st = br.readLine()) != null) {
-            String [] graph = result.split("\t",5);
+            String [] graph = st.split("\t",9);
+            System.out.println(graph[1]);
+
             for (int i = 1 ; i<graph.length ; i++) {
                 int startingPoint = Integer.parseInt(graph[0]);
-                System.out.println(startingPoint);
-                System.out.println(startingPoint);
                 String[] graph2 = graph[i].split(",");
+                System.out.println("bla"+graph2[1]);
                 int nextPoint = Integer.parseInt(graph2[0]);
                 int weight = Integer.parseInt(graph2[1]);
-
                 weightedGraph.AddEdge(startingPoint,nextPoint,weight);
             }
         }
+        System.out.println(weightedGraph.toString());
 
 
     }
