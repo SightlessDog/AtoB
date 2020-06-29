@@ -5,8 +5,9 @@ import java.util.List;
 
 public class WeightedGraph {
     //each point has a weight
-    class Edge  {
-        int v,w ;
+     class Edge  {
+         int v;
+         int w ;
         public Edge (int v, int w ) {
             this.v = v  ;
             this.w =w ;
