@@ -12,6 +12,14 @@ public class WeightedGraph {
             this.w =w ;
         }
 
+        public int getVertice() {
+            return v;
+        }
+
+        public int getWeight() {
+            return w;
+        }
+
         @Override
         public String toString() {
             return "("+v + "," + w + ")" ;
