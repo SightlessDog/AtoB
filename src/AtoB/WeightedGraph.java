@@ -29,7 +29,6 @@ public class WeightedGraph {
 
     List<Edge> G[] ;
 
-
     public WeightedGraph(int n) {
         G = new LinkedList[n];
         for (int i = 0 ; i< G.length ; i++ ) {
@@ -37,9 +36,10 @@ public class WeightedGraph {
         }
     }
     //adds an Edge, takes the starting point u , last point v and weight w
-    void AddEdge(int u, int v, int w ) {
+    void AddEdge(int u,  int v, int w ) {
         G[u].add(0,new Edge(v,w));
     }
+
     //checks if connected
     boolean connected (int u , int v) {
         for (Edge i: G[u]) {
@@ -47,6 +47,7 @@ public class WeightedGraph {
         }
         return false ;
     }
+
     @Override
     public String toString() {
         String result = "" ;

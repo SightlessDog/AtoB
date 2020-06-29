@@ -23,12 +23,10 @@ public class GraphReader {
 
         while ((st = br.readLine()) != null) {
             String [] graph = st.split("\t",9);
-            System.out.println(graph[1]);
-
+            //System.out.println(graph[1]);
             for (int i = 1 ; i<graph.length ; i++) {
                 int startingPoint = Integer.parseInt(graph[0]);
                 String[] graph2 = graph[i].split(",");
-                System.out.println("bla"+graph2[1]);
                 int nextPoint = Integer.parseInt(graph2[0]);
                 int weight = Integer.parseInt(graph2[1]);
                 weightedGraph.AddEdge(startingPoint,nextPoint,weight);
@@ -36,7 +34,8 @@ public class GraphReader {
         }
         System.out.println(weightedGraph.toString());
 
-        dijkstraAlgorithm();
+        cheapestWay(weightedGraph);
+
 
     }
 
@@ -46,17 +45,10 @@ public class GraphReader {
         // starte im punkt , hab die weight 0
         // schau welche punkte verbunden sind + gehe zum günstigsten
         // die kosten um da hin zu gehen sind die aktuellen kosten, schau welche knoten es jetzt gibt und vergleiche die kosten + aktuelle kosten
-
-
-
-
-
         // i want to get the weight of any edge
 
         System.out.println(weightedGraph.G[5].get(1).getWeight());
         System.out.println(weightedGraph.G[5].get(1).getVertice());
-
-
 
         /*
         Start somewhere and have kost = 0
@@ -97,5 +89,23 @@ public class GraphReader {
 
         }
     }
+
+    private static int getVertices () {
+        Random random = new Random();
+        int vertice ;
+        int number1 = random.nextInt(8)+1;
+        int number2 = random.nextInt(2) ;
+        vertice = weightedGraph.G[number1].get(number2).getVertice();
+        return vertice ;
+    }
+
+    public static void cheapestWay (WeightedGraph weightedGraph) {
+       int vertice1 = getVertices() ;
+       int vertice2 = getVertices();
+       if (weightedGraph.connected(3,4)) {
+           System.out.println("The two vertices " + vertice1 +  " " + vertice2 +" are directly connected");
+       }
+    }
+
 
 }
