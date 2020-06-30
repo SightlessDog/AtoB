@@ -1,6 +1,6 @@
 package AtoB;
 
-import AtoB.WeightedGraph.Edge;
+import AtoB.WeightedGraph.*;
 
 import java.io.*;
 import java.util.*;
@@ -13,28 +13,50 @@ public class GraphReader {
 
 
     public static void main(String[] args) throws IOException {
-        File file = new File ("C:\\Users\\Miri\\Desktop\\graph1.txt");
+        File file = new File ("graph1.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String st ;
         String result="" ;
-       // while ((st = br.readLine()) != null) {
-         //   result += st ;
-       // }
+
+        int count = 1;
+        for(;count < 9; count++){
+            Node node = new Node(count);
+            weightedGraph.allNodes.add(node);
+
+        }
+        count = 1;
 
         while ((st = br.readLine()) != null) {
             String [] graph = st.split("\t",9);
-            //System.out.println(graph[1]);
+            List<Edge> neighbours = new ArrayList<>();
             for (int i = 1 ; i<graph.length ; i++) {
                 int startingPoint = Integer.parseInt(graph[0]);
+              //  System.out.println("Starting point : " +startingPoint);
                 String[] graph2 = graph[i].split(",");
                 int nextPoint = Integer.parseInt(graph2[0]);
+               // System.out.println("NextPoint : " +nextPoint);
                 int weight = Integer.parseInt(graph2[1]);
-                weightedGraph.AddEdge(startingPoint,nextPoint,weight);
-            }
-        }
-        System.out.println(weightedGraph.toString());
+               // System.out.println("weight : " +weight)
+                //weightedGraph.AddEdge(startingPoint,nextPoint,weight);
+                Node start = weightedGraph.getNodeByID(startingPoint);
+                Node end = weightedGraph.getNodeByID(nextPoint);
 
-        cheapestWay(weightedGraph);
+                Edge edge = new Edge(start,end,weight);
+                neighbours.add(edge);
+            }
+
+            weightedGraph.getNodeByID(count).neighbours = neighbours;
+            count++;
+        }
+
+        for (Node n:
+             weightedGraph.allNodes) {
+            System.out.println(n.toString());
+        }
+
+        weightedGraph.Dijkstra(3,8);
+
+
 
 
     }
@@ -48,7 +70,7 @@ public class GraphReader {
         // i want to get the weight of any edge
 
         System.out.println(weightedGraph.G[5].get(1).getWeight());
-        System.out.println(weightedGraph.G[5].get(1).getVertice());
+        //System.out.println(weightedGraph.G[5].get(1).getVertice());
 
         /*
         Start somewhere and have kost = 0
@@ -90,22 +112,9 @@ public class GraphReader {
         }
     }
 
-    private static int getVertices () {
-        Random random = new Random();
-        int vertice ;
-        int number1 = random.nextInt(8)+1;
-        int number2 = random.nextInt(2) ;
-        vertice = weightedGraph.G[number1].get(number2).getVertice();
-        return vertice ;
-    }
 
-    public static void cheapestWay (WeightedGraph weightedGraph) {
-       int vertice1 = getVertices() ;
-       int vertice2 = getVertices();
-       if (weightedGraph.connected(3,4)) {
-           System.out.println("The two vertices " + vertice1 +  " " + vertice2 +" are directly connected");
-       }
-    }
+
+
 
 
 }
