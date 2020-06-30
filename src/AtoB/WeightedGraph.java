@@ -6,18 +6,18 @@ import java.util.List;
 public class WeightedGraph {
     //each point has a weight
      class Edge  {
-         int v;
-         int w ;
-        public Edge (int v, int w ) {
+         String v;
+         String w ;
+        public Edge (String v, String w ) {
             this.v = v  ;
             this.w =w ;
         }
 
-        public int getVertice() {
+        public String getVertice() {
             return v;
         }
 
-        public int getWeight() {
+        public String getWeight() {
             return w;
         }
 
@@ -36,14 +36,14 @@ public class WeightedGraph {
         }
     }
     //adds an Edge, takes the starting point u , last point v and weight w
-    void AddEdge(int u,  int v, int w ) {
-        G[u].add(0,new Edge(v,w));
+    void AddEdge(int u,  String v, String w ) {
+        G[u].add(new Edge(v,w));
     }
 
     //checks if connected
     boolean connected (int u , int v) {
         for (Edge i: G[u]) {
-            if (i.v == v) return true ;
+            if (i.v.equals(v)) return true ;
         }
         return false ;
     }

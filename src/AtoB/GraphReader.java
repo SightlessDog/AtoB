@@ -7,13 +7,13 @@ import java.util.*;
 
 public class GraphReader {
 
-    static WeightedGraph weightedGraph = new WeightedGraph(9);
+    static WeightedGraph weightedGraph = new WeightedGraph(3000);
 
 
 
 
     public static void main(String[] args) throws IOException {
-        File file = new File ("C:\\Users\\Miri\\Desktop\\graph1.txt");
+        File file = new File ("C:\\Users\\ely36\\Documents\\bvg.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String st ;
         String result="" ;
@@ -24,17 +24,18 @@ public class GraphReader {
         while ((st = br.readLine()) != null) {
             String [] graph = st.split("\t",9);
             //System.out.println(graph[1]);
-            for (int i = 1 ; i<graph.length ; i++) {
-                int startingPoint = Integer.parseInt(graph[0]);
+            for (int i = 0 ; i<graph.length ; i++) {
+                String startingPoint = (graph[0]);
+                weightedGraph.AddEdge(i,startingPoint);
                 String[] graph2 = graph[i].split(",");
-                int nextPoint = Integer.parseInt(graph2[0]);
-                int weight = Integer.parseInt(graph2[1]);
-                weightedGraph.AddEdge(startingPoint,nextPoint,weight);
+                String nextPoint = (graph2[0]);
+                String weight = (graph2[1]);
+                weightedGraph.AddEdge(i,nextPoint,weight);
             }
         }
         System.out.println(weightedGraph.toString());
 
-        cheapestWay(weightedGraph);
+        //cheapestWay(weightedGraph);
 
 
     }
@@ -90,7 +91,7 @@ public class GraphReader {
         }
     }
 
-    private static int getVertices () {
+   /* private static int getVertices () {
         Random random = new Random();
         int vertice ;
         int number1 = random.nextInt(8)+1;
@@ -105,7 +106,7 @@ public class GraphReader {
        if (weightedGraph.connected(3,4)) {
            System.out.println("The two vertices " + vertice1 +  " " + vertice2 +" are directly connected");
        }
-    }
+    }*/
 
 
 }
